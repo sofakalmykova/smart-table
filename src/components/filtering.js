@@ -5,8 +5,6 @@ const compare = createComparison(defaultRules);
 
 export function initFiltering(elements, indexes) {
     // @todo: #4.1 — заполнить выпадающие списки опциями
-    //console.log(indexes)
-    //console.log(elements)
     Object.keys(indexes).forEach(elementName => {
     elements[elementName].append(...Object.values(indexes[elementName])
     .map(name => {
@@ -25,6 +23,13 @@ export function initFiltering(elements, indexes) {
         const fieldName = action.dataset.field;
         state = {...state, [fieldName]: ""}
     }
+    const totalFrom = parseFloat(state.totalFrom) || undefined;
+    const totalTo = parseFloat(state.totalTo) || undefined;
+    if (totalFrom !== undefined || totalTo !== undefined) {
+        state.total = [totalFrom, totalTo];
+    }
+        delete state.totalFrom;
+        delete state.totalTo;
         // @todo: #4.5 — отфильтровать данные используя компаратор
         return data.filter(row => compare(row, state)); 
     } }

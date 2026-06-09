@@ -39,7 +39,6 @@ return {                                            // расширьте сущ
  */
 function render(action) {
     let state = collectState();
-    //console.log(state) // состояние полей из таблицы
     let result = [...data]; // копируем для последующего изменения
     // @todo: использование
     result = applySearching(result, state, action);
@@ -76,8 +75,7 @@ const applySorting = initSorting([
 const applyFiltering = initFiltering(sampleTable.filter.elements, 
     {searchBySeller: indexes.sellers
 });
-const applySearching = initSearching(sampleTable.search.elements);
-console.log(sampleTable.search.elements.searchField);
+const applySearching = initSearching(sampleTable.search.elements.search.dataset.name);
 const appRoot = document.querySelector('#app');
 appRoot.appendChild(sampleTable.container);
 
