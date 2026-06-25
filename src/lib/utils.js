@@ -20,6 +20,7 @@ export function cloneTemplate(templateId) {
     // где ключами являются значения data-name, а значениями - сами элементы
     const elements = Array.from(clone.querySelectorAll('[data-name]')).reduce((acc, el) => {
         acc[el.dataset.name] = el;
+        //console.log(acc)
         return acc;
     }, {});
 
@@ -68,7 +69,7 @@ export function processFormData(formData) {
  */
 export const makeIndex = (arr, field, val) => arr.reduce((acc, cur) => ({
     ...acc,  // Копируем все уже накопленные значения
-    [cur[field]]: val(cur)  // Добавляем новое поле с именем из cur[field] и значением из val(cur)
+    [cur[field]]: val(cur) // Добавляем новое поле с именем из cur[field] и значением из val(cur)
 }), {});
 
 /**
